@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+.card-title-custom {
+    font-size: .8rem;
+    font-weight: bold;
+    line-height: 1rem;
+}
+
+a {
+    color: black;
+}

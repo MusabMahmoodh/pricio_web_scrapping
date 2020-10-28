@@ -12,7 +12,7 @@ const port = 3000
 // Web scrapping functions
 app.set("views", path.join(__dirname,'views'));
 app.set('view engine', 'ejs')
-
+app.use(express.static(path.join(__dirname, 'public')))
 
 /***
  * Functions to get data

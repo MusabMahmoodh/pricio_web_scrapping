@@ -2,35 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link rel="stylesheet" href="main.css">
+    <title>Pricio</title>
 </head>
 <body>
     <h1>PRICIO</h1>
-    <%amazon.forEach((item) => {%>
-        <%=item.image %> <br>
-        <%=item.link %> <br>
-        <%=item.title %> <br>
-        <%=item.price %> <br>
-        <%=item.coupon %> <br>
-        <%=item.shipping %> <br>
-        <%=item.rating %> <br>
-        <%=item.reviews %> <br>
-    <%}) %>
-
     <hr>
-    <hr>
-    <%ebay.forEach((item) => {%>
-        <%=item.image %> <br>
-        <%=item.link %> <br>
-        <%=item.title %> <br>
-        <%=item.price %> <br>
-        <%=item.discount %> <br>
-        <%=item.shippingFrom %> <br>
-        <%=item.shippingCost %> <br>
-        <%=item.description %> <br>
-        <%=item.hotness %> <br>
-    <%}) %>
+    <div class="container">
+        <div class="row">
+            <div class="col s6 " >
+                <div class="row">
+                <% amazon.forEach((item) => {%>                    
+                    <div class="col s12 m6">
+                        <div class="card">
+                          <div class="card-image">
+                            <img src="<%=item.image %> ">                            
+                          </div>
+                          <div class="card-content">
+                          <a href="<%=item.link %>"> <h5 class="card-title-custom">
+                              <%=item.title %></h5>
+                          </a>
+                          </div>
+                          <div class="card-action">
+                            <p><%=item.price %></p>
+                            <p> <%=item.coupon %> </p>
+                            <p><%=item.shipping %></p>
+                            <p><%=item.rating %></p>
+                            <p><%=item.reviews %></p>
+                          </div>
+                        </div>
+                      </div>  
+                <%})%>
+                </div>
+            </div>
+            
+            <!-- Ebay  -->
+            <div class="col s6 " >
+                <div class="row">
+                <% ebay.forEach((item) => {%>                    
+                    <div class="col s12 m6">
+                        <div class="card">
+                          <div class="card-image">
+                            <img src="<%=item.image %> ">                            
+                          </div>
+                          <div class="card-content">
+                          <a href="<%=item.link %>"> <h5 class="card-title-custom">
+                              <%=item.title %></h5>
+                          </a>
+                          </div>
+                          <div class="card-action">
+                            <p><%=item.price %></p>
+                            <p> <%=ebay[0].discount %> </p>
+                            <p><%=ebay[0].shippingFrom %></p>
+                            <p><%=ebay[0].shippingCost %></p>
+                            <p><%=ebay[0].description %> </p>
+                            <p><%=ebay[0].hotness %></p>
+                          </div>
+                        </div>
+                      </div>  
+                <%})%>
+                </div>
+            </div>
+        </div>
+    </div>   
     
 </body>
 </html>
