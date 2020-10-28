@@ -1,0 +1,19 @@
+{
+  "name": "pricio_learn",
+  "version": "1.0.0",
+  "description": "This is web scrapper to compare prices",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "devStart": "nodemon app.js"
+  },
+  "author": "Musab mahmoodh",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "cheerio": "^1.0.0-rc.3",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  }
+}
