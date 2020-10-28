@@ -7,28 +7,30 @@
 </head>
 <body>
     <h1>PRICIO</h1>
-    <!-- <%amazon.forEach((item) => {%>
-        <%=item %>
-    <%}) %> -->
+    <%amazon.forEach((item) => {%>
+        <%=item.image %> <br>
+        <%=item.link %> <br>
+        <%=item.title %> <br>
+        <%=item.price %> <br>
+        <%=item.coupon %> <br>
+        <%=item.shipping %> <br>
+        <%=item.rating %> <br>
+        <%=item.reviews %> <br>
+    <%}) %>
 
-    <%= amazon[0].image %>
-    <br>
-    <%= amazon[0].link %>
-    <br>
-    <%= amazon[0].title %>
-    <br>
-    <%= amazon[0].price %>
-    <br>
-    <%= amazon[0].coupon %>
-    <br>
-    <%= amazon[0].shipping %>
-    <br>
-    <%= amazon[0].rating %>
-    <br>
-    <%= amazon[0].reviews %>
-    <br>
+    <hr>
+    <hr>
+    <%ebay.forEach((item) => {%>
+        <%=item.image %> <br>
+        <%=item.link %> <br>
+        <%=item.title %> <br>
+        <%=item.price %> <br>
+        <%=item.discount %> <br>
+        <%=item.shippingFrom %> <br>
+        <%=item.shippingCost %> <br>
+        <%=item.description %> <br>
+        <%=item.hotness %> <br>
+    <%}) %>
     
-    <br>
-
 </body>
 </html>
