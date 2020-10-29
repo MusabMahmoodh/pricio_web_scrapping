@@ -62,7 +62,8 @@
               <div class="col s12 item-bucket">	
                 <div class="row">
                   <% if(amazon.length == 0) {%>
-                    <p>No Items found</p>
+                    
+                    <img src="images/noproduct.png" class="responsive-img" alt="sorry, no items found">
                   <%} else {%>
                     <% amazon.forEach((item) => {%>                    
                       <div class="col s12 m6">
@@ -104,7 +105,7 @@
               <div class="col s12 item-bucket">	
                 <div class="row">
                   <% if(ebay.length == 0) {%>
-                    <p>No Items found</p>
+                    <img src="images/noproduct.png" class="responsive-img" alt="sorry, no items found">
                   <%} else {%>
                     <% ebay.forEach((item) => {%>                    
                       <div class="col s12 m6">
@@ -137,7 +138,11 @@
     </div>
 </div>  
 <!-- Pages -->
+<div class="row center-align pages">
+  <a class="waves-effect waves-light btn"><i class="material-icons left">chevron_left</i>Prev</a>
+  <a class="waves-effect waves-light btn" href="?test='123'">Next<i class="material-icons right">chevron_right</i></a>
 
+</div>
 <!-- Footer -->
 <footer class="page-footer blue-grey darken-3">
   <div class="container">
