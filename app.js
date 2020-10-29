@@ -22,10 +22,10 @@ app.use(express.static(path.join(__dirname, 'public')))
  */
 
 // Amazon
-const getFromAmazon =async (item="") => {
+const getFromAmazon =async (queryItem="",pageNo=1,sortBy="") => {
   try{
     let items = []
-    const result= await axios.get(`https://www.amazon.com/s?k=${item}`)
+    const result= await axios.get(`https://www.amazon.com/s?k=${queryItem}&s=${sortBy}&page=${pageNo}`)
 
     // const $ = cheerio.load(result.data,{
     //   withDomLvl1: true,
@@ -57,11 +57,10 @@ const getFromAmazon =async (item="") => {
 }
 
 //function to get from E-bay\
-const getFromEbay =async (item="") => {
+const getFromEbay =async (queryItem="",pageNo=1,sortBy="") => {
   try{
     let items = []
-    const result= await axios.get(`https://www.ebay.com/sch/i.html?_nkw=${item}`)
-
+    const result= await axios.get(`https://www.ebay.com/sch/i.html?_nkw=${queryItem}&_sop=${sortBy}&_pgn=${pageNo}`)    
     const $ = cheerio.load(result.data);
     console.log("Here")
 
@@ -92,17 +91,26 @@ const getFromEbay =async (item="") => {
  */
 // Get request
 app.get('/',async  (req, res) => {
-
-  
+  let queryItem
+  let pageNo
+  let sortBy
   console.log("started")
+  queryItem = req.query.queryItem ?`${req.query.queryItem}`:""
+  pageNo = req.query.pageNo ?`${req.query.pageNo}`:1
+  sortBy = req.query.sortBy ?`${req.query.sortBy}`:""
+
+  console.log(queryItem,pageNo,sortBy)
+  
   try {
-    const amazon =await getFromAmazon()  
-    const ebay =await getFromEbay()  
+    const amazon =await getFromAmazon(queryItem,pageNo,sortBy)  
+    const ebay =await getFromEbay(queryItem,pageNo,sortBy)  
 
     // rendering
     // res.render("index")
     res.render("index",{
-      "queryItem":"",
+      "queryItem":queryItem,
+      "pageNo":pageNo,
+      "sortBy":sortBy,
       "amazon":amazon,
       "ebay":ebay
     })  
@@ -138,6 +146,8 @@ app.post('/', async (req, res) => {
     // })  
     res.render("index",{
       "queryItem":queryItem,
+      "pageNo":1,
+      "sortBy":"",
       "amazon":amazon,
       "ebay":ebay
     })  

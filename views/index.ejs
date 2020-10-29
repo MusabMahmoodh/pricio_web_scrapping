@@ -139,8 +139,8 @@
 </div>  
 <!-- Pages -->
 <div class="row center-align pages">
-  <a class="waves-effect waves-light btn"><i class="material-icons left">chevron_left</i>Prev</a>
-  <a class="waves-effect waves-light btn" href="?test='123'">Next<i class="material-icons right">chevron_right</i></a>
+  <a class="waves-effect waves-light btn" href="/?queryItem=<%= queryItem %>&sortBy=&pageNo=<%= parseInt(pageNo)-1 %>" <%= parseInt(pageNo)<=1 ? "disabled" : "" %> ><i class="material-icons left">chevron_left</i>Prev</a>
+  <a class="waves-effect waves-light btn" href="/?queryItem=<%= queryItem %>&sortBy=&pageNo=<%= parseInt(pageNo)+1 %>" <%= amazon.length>0 ? "" : ebay.length>0 ? "" :"disabled" %>  >Next<i class="material-icons right">chevron_right</i></a>
 
 </div>
 <!-- Footer -->
