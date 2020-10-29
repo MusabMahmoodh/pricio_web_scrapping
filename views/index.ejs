@@ -136,14 +136,16 @@
                             <div class="card-content">
                             <a href="<%=item.link %>"> <h5 class="card-title-custom">
                                 <%=item.title %></h5>
+                                <blockquote><b><%= item.price %></b></blockquote>
+                                <p class="right-align"><%=item.shippingCost %></p>
                             </a>
                             </div>
                             <div class="card-action">
-                              <p><%=item.price %></p>
-                              <p> <%=item.coupon %> </p>
-                              <p><%=item.shipping %></p>
-                              <p><%=item.rating %></p>
-                              <p><%=item.reviews %></p>
+                              <p class="red-text"> <b><%=item.discount %></b> </p>
+
+                              <p><%=item.shippingFrom %></p>
+                              <p><%=item.description %></p>
+                              <p><%=item.hotness %></p>
                             </div>
                           </div>
                         </div>  

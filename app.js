@@ -81,11 +81,11 @@ const getFromEbay =async (queryItem="",pageNo=1,sortBy="") => {
         image :$(this).find('.s-item__image-img').attr("src"),
         link: $(this).find("a").attr("href"),
         title:$(this).find(".s-item__title").text(),
-        price:$(this).find(".s-item__price").text(),
+        price:`$${$(this).find(".s-item__price").text().trim().split('$')[1]}`,
         discount:$(this).find(".s-item__discount.s-item__discount").text(),
         shippingFrom:$(this).find(".s-item__location.s-item__itemLocation").text(),    
         shippingCost:$(this).find(".s-item__shipping.s-item__logisticsCost").text(),    
-        description:$(this).find('.s-item__details.clearfix').text(),
+        description:$(this).find('.s-item__gsp-info.s-item__gspInfo').text(),
         hotness:$(this).find('.a-link-normal').find(".s-item__hotness.s-item__itemHotness").text()        
       }      
        items.push(item)
