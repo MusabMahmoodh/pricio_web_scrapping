@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 
 var app=express();
-var port = process.env.port || 3000;
+
 
 
 app.use(bodyParser.urlencoded());
@@ -171,4 +171,4 @@ app.post('/', async (req, res) => {
 
 
 // ///////////////////
-app.listen(port);
+app.listen(process.env.PORT || 5000);
