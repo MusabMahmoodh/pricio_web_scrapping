@@ -7,9 +7,12 @@ var bodyParser = require('body-parser');
 
 
 var app=express();
+var port = process.env.port || 3000;
+
+
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
-const port = 3000
+
 
 
 // Web scrapping functions
@@ -168,6 +171,4 @@ app.post('/', async (req, res) => {
 
 
 // ///////////////////
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+app.listen(port);
