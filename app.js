@@ -25,15 +25,17 @@ app.use(express.static(path.join(__dirname, 'public')))
 const getFromAmazon =async (queryItem="",pageNo=1,sortBy="") => {
   try{
     let items = []
-    const result= await axios.get(`https://www.amazon.com/s?k=${queryItem}&s=${sortBy}&page=${pageNo}`)
-
-    // const $ = cheerio.load(result.data,{
-    //   withDomLvl1: true,
-    //   normalizeWhitespace: false,
-    //   xmlMode: false,
-    //   decodeEntities: true
-    //   }
-    // );
+    var typeSortBy
+    if(!sortBy.localeCompare("new")) {
+      typeSortBy = "date-desc-rank"
+    } else if (!sortBy.localeCompare("plh")) {
+      typeSortBy = "price-asc-rank"
+    }  else if (!sortBy.localeCompare("phl")) {
+      typeSortBy = "price-desc-rank"
+    } else {
+      typeSortBy=""
+    }
+    const result= await axios.get(`https://www.amazon.com/s?k=${queryItem}&s=${typeSortBy}&page=${pageNo}`)
     const $ = cheerio.load(result.data);
     console.log("Here")
 
@@ -60,7 +62,17 @@ const getFromAmazon =async (queryItem="",pageNo=1,sortBy="") => {
 const getFromEbay =async (queryItem="",pageNo=1,sortBy="") => {
   try{
     let items = []
-    const result= await axios.get(`https://www.ebay.com/sch/i.html?_nkw=${queryItem}&_sop=${sortBy}&_pgn=${pageNo}`)    
+    var typeSortBy
+    if(!sortBy.localeCompare("new")) {
+      typeSortBy = 10
+    } else if (!sortBy.localeCompare("plh")) {
+      typeSortBy = 15
+    }  else if (!sortBy.localeCompare("phl")) {
+      typeSortBy = 16
+    } else {
+      typeSortBy=""
+    }
+    const result= await axios.get(`https://www.ebay.com/sch/i.html?_nkw=${queryItem}&_sop=${typeSortBy}&_pgn=${pageNo}`)    
     const $ = cheerio.load(result.data);
     console.log("Here")
 

@@ -59,14 +59,15 @@ sort menu
 */
 .sort {
     margin-bottom: 20px;
-    
+    padding: 5px 0;
+
 }
 .sort h5{
     color:#eceff1 ;
     font-size: small;
     margin-bottom: 0;
 }
-.sort label {
+.sort * {
     color: #b0bec5;
 }
 /* 
