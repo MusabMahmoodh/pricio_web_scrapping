@@ -44,11 +44,11 @@ const getFromAmazon =async (queryItem="",pageNo=1,sortBy="") => {
         image :$(this).find("img").attr("src"),
         link: `https://www.amazon.com${$(this).find("a").attr("href")}`,
         title:$(this).find("h2").text(),
-        price:$(this).find('.a-price').text(),
+        price:$(this).find('.a-price').text() === "" ? "Price not available" : `$${$(this).find('.a-price').text().trim().split('$')[1]}`,
         coupon:$(this).find('.s-coupon-clipped.aok-hidden').text(),
-        shipping:$(this).find('.a-row.a-size-base.a-color-secondary.s-align-children-center').text(),
-        rating:$(this).find('.a-icon-alt').text(),
-        reviews:$(this).find('.a-link-normal').find(".a-size-base").text()        
+        rating:$(this).find('.a-icon-alt').text() === "" ? "Rating: Not available" :`Rating: ${$(this).find('.a-icon-alt').text()}`,
+        description:$(this).find('.a-color-price').text() 
+        // reviews:$(this).find('.a-link-normal').find(".a-size-base").text()        
       }      
        items.push(item)
     })
@@ -80,12 +80,12 @@ const getFromEbay =async (queryItem="",pageNo=1,sortBy="") => {
       var item = {
         image :$(this).find('.s-item__image-img').attr("src"),
         link: $(this).find("a").attr("href"),
-        title:$(this).find(".s-item__title.s-item__title--has-tags").text(),
+        title:$(this).find(".s-item__title").text(),
         price:$(this).find(".s-item__price").text(),
         discount:$(this).find(".s-item__discount.s-item__discount").text(),
         shippingFrom:$(this).find(".s-item__location.s-item__itemLocation").text(),    
         shippingCost:$(this).find(".s-item__shipping.s-item__logisticsCost").text(),    
-        description:$(this).find('.s-item__subtitle').text(),
+        description:$(this).find('.s-item__details.clearfix').text(),
         hotness:$(this).find('.a-link-normal').find(".s-item__hotness.s-item__itemHotness").text()        
       }      
        items.push(item)
