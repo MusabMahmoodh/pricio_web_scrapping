@@ -14,22 +14,22 @@
     <link rel="stylesheet" href="main.css">
     <title>Pricio</title>
 </head>
-<body>
-  <header>
-    <div class="row blue-grey darken-4" >
-      <div class="container  valign-wrapper" >
-        <div class="col s12 m6">
-          <h1>PRICIO</h1>
-          <p>|| Compare before consume</p>
+<body class="blue-grey darken-4 valign-wrapper " style="height: 100vh;" >
+  <header style="width: 100%;">
+    <div class="row" >
+      <div class="container"  >
+        <div class="col s12 " style="margin-bottom: 10px;">
+          <h1 class="center-align">PRICIO</h1>
+          <p class="center-align">|| Compare before consume</p>
         </div>
-        <form class="col s12 m6 " method="POST" action="/" >
+        <form class="col s12 m8 offset-m2" method="POST" action="/"  style="margin-bottom: 40px;">
           <div class="row  valign-wrapper">
             <div class="col s12 m8" >
               <div class="input-field col s12">
               
                 <i class="material-icons prefix">search</i>
-                <input id="search" type="text" class="validate" name="search" required="" aria-required="true" value="<%=queryItem%>" >
-                <label for="search">Search</label>
+                <input id="search" type="text" class="validate" name="search" required="" aria-required="true" >
+                <label for="search">Search a product here</label>
                 
               </div>
             </div>
@@ -38,158 +38,38 @@
                 <i class="material-icons right ">send</i>
               </button>
             </div>
+          
+            </div>
+          </form>
+          <div class="col s12 " style="margin-bottom: 30px;">
+            <p class="center-align">We help you to compare the prices in the leading online market places, <b>Amazon.com</b> and <b>Ebay.com</b></p>
+            <hr>
           </div>
-        </form>
+          <br>
+          <br>
+          <div class="col s12" >
+            
+              <div class="col s6 push-s3 m3 offset-m1">
+                <img src="images/amazon-png.png" alt="" class="responsive-img" style="margin-bottom: 15px;margin-top: 15px;">
+                <p>Amazon (Amazon.com) is the world’s largest online retailer and a prominent cloud services provider. </p>
+              </div>
+              <div class="col s12 m4">
+                <img src="images/compare.png" alt="" class="responsive-img">
+              </div>
+              <div class="col s6 push-s3 m3">
+                <img src="images/ebay-png.png" alt="" class="responsive-img" >
+                <p>eBay is the world's online marketplace; a place for buyers and sellers to come together and trade almost anything!</p>
+              </div>
+         
+        </div>
+        
+        
+        
       </div>
     </div>
   </header>
-  <!-- Sort menu -->
-  <div class="row sort blue-grey darken-3 valign-wrapper">
-    <div class="container">
-      <div class="col sm12 m6 offset-m6 ">
-        <div class="row ">
-          <div class="col sm12 m2">
-            <small style="color: #e0f7fa;">Sort by:</small>
-          </div>
-          <div class="col sm12 m10 valign-wrapper">
-            <span class="new badge grey darken-4" data-badge-caption=""><a  href="/?queryItem=<%= queryItem %>&sortBy=new&pageNo=<%= pageNo %>"  >Newest</a></span>
-            <span class="new badge grey darken-4" data-badge-caption=""><a  href="/?queryItem=<%= queryItem %>&sortBy=plh&pageNo=<%= pageNo %>"  >Price:Low-High</a></span>
-            <span class="new badge grey darken-4" data-badge-caption=""><a  href="/?queryItem=<%= queryItem %>&sortBy=phl&pageNo=<%= pageNo %>"  >Price:High-low</a></span>
-          </div>
-        </div>
-        
-        
-      </div>
-
-    </div>
-    
-    
-  </div>
-
-  <!-- Display items part -->
-  <div class="container main">
-    <div class="row">
-        <div class="col s6 " >
-            <div class="row">
-              <!-- Brand -->
-              <div class="col s12 brand-icons" >	
-                <img src="images/amazon-svg.svg" alt="">
-              </div>
-              <!-- Items -->
-              <div class="col s12 item-bucket">	
-                <div class="row">
-                  <% if(amazon.length == 0) {%>
-                    
-                    <img src="images/noproduct.png" class="responsive-img" alt="sorry, no items found">
-                  <%} else {%>
-                    <% amazon.forEach((item) => {%>                    
-                      <div class="col s12 m6">
-                          <div class="card">
-                            <div class="card-image">
-                              <img src="<%=item.image %> ">                            
-                            </div>
-                            <div class="card-content">
-                            <a href="<%=item.link %>"> <h5 class="card-title-custom">
-                                <%=item.title %></h5>
-                                
-                                <blockquote><b><%=item.price%></b></blockquote>
-                            </a>
-                            </div>
-                            <div class="card-action">
-                              
-                              <p class="red-text"> <b><%=item.coupon %></b> </p>
-                              
-                              <p><%=item.rating %></p>
-                              <p class="red-text"><%=item.description %></p>
-               
-                            </div>
-                          </div>
-                        </div>  
-                    <%})%>
-                    
-                  <%}%>
-                  </div>
-              </div>
-              
-            </div>
-        </div>
-        
-        <!-- Ebay  -->
-        <div class="col s6 " >
-            <div class="row">
-              <!-- Brand -->
-              <div class="col s12 brand-icons" >	
-                <img src="images/ebay-svg.svg" alt="">
-              </div>
-              <!-- Items -->
-              <div class="col s12 item-bucket">	
-                <div class="row">
-                  <% if(ebay.length == 0) {%>
-                    <img src="images/noproduct.png" class="responsive-img" alt="sorry, no items found">
-                  <%} else {%>
-                    <% ebay.forEach((item) => {%>                    
-                      <div class="col s12 m6">
-                          <div class="card">
-                            <div class="card-image">
-                              <img src="<%=item.image %> ">                            
-                            </div>
-                            <div class="card-content">
-                            <a href="<%=item.link %>"> <h5 class="card-title-custom">
-                                <%=item.title %></h5>
-                                <blockquote><b><%= item.price %></b></blockquote>
-                                <p class="right-align"><%=item.shippingCost %></p>
-                            </a>
-                            </div>
-                            <div class="card-action">
-                              <p class="red-text"> <b><%=item.discount %></b> </p>
-
-                              <p><%=item.shippingFrom %></p>
-                              <p><%=item.description %></p>
-                              <p><%=item.hotness %></p>
-                            </div>
-                          </div>
-                        </div>  
-                    <%})%>
-                    
-                  <%}%>
-                  </div>
-              </div>
-              
-            </div>
-        </div>
-    </div>
-</div>  
-<!-- Pages -->
-<div class="row center-align pages">
-  <a class="waves-effect waves-light btn" href="/?queryItem=<%= queryItem %>&sortBy=&pageNo=<%= parseInt(pageNo)-1 %>" <%= parseInt(pageNo)<=1 ? "disabled" : "" %> ><i class="material-icons left">chevron_left</i>Prev</a>
-  <a class="waves-effect waves-light btn" href="/?queryItem=<%= queryItem %>&sortBy=&pageNo=<%= parseInt(pageNo)+1 %>" <%= amazon.length>0 ? "" : ebay.length>0 ? "" :"disabled" %>  >Next<i class="material-icons right">chevron_right</i></a>
-
-</div>
-<!-- Footer -->
-<footer class="page-footer blue-grey darken-3">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">PRICIO</h5>
-        <p class="grey-text text-lighten-4">PRICIO is a best way to compare the prices in leading two e-commerce sites</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">COTACT</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-    © 2020 Copyright Text
-    </div>
-  </div>
-</footer>
+ 
+  
     
     
 </body>

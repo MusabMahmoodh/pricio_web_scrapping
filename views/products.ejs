@@ -10,87 +10,191 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script>
+      if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
     <link rel="stylesheet" href="main.css">
     <title>Pricio</title>
 </head>
 <body>
-    
-    <div class="row">
-      <div class="col s12 m6">
-        <h1>PRICIO</h1>
+  <header>
+    <div class="row blue-grey darken-4" >
+      <div class="container  valign-wrapper" >
+        <div class="col s12 m6">
+          <h1>PRICIO</h1>
+          <p>|| Compare before consume</p>
+        </div>
+        <form class="col s12 m6 " method="POST" action="/" >
+          <div class="row  valign-wrapper">
+            <div class="col s12 m8" >
+              <div class="input-field col s12">
+              
+                <i class="material-icons prefix">search</i>
+                <input id="search" type="text" class="validate" name="search" required="" aria-required="true" value="<%=queryItem%>" >
+                <label for="search">Search</label>
+                
+              </div>
+            </div>
+            <div class="col s12 m4">
+              <button class="btn waves-effect waves-light  teal accent-4" type="submit">Search
+                <i class="material-icons right ">send</i>
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-      <form class="col s12 m6" method="POST" action="/">
-        <div class="row">
-          <div class="input-field col s12 m6">
-            <i class="material-icons prefix">search</i>
-            <input id="search" type="text" class="validate" name="search" required="" aria-required="true">
-            <label for="search">Search</label>
-            <button class="btn waves-effect waves-light red" type="submit">Submit
-              <i class="material-icons right ">send</i>
-            </button>
+    </div>
+  </header>
+  <!-- Sort menu -->
+  <div class="row sort blue-grey darken-3 valign-wrapper">
+    <div class="container">
+      <div class="col sm12 l6 offset-l6 ">
+        <div class="row ">
+          <div class="col sm12 l2">
+            <small style="color: #e0f7fa;">Sort by:</small>
+          </div>
+          <div class="col sm12 l10 valign-wrapper">
+            <span class="new badge grey darken-4" data-badge-caption=""><a  href="/products?queryItem=<%= queryItem %>&sortBy=new&pageNo=<%= pageNo %>"  >Newest</a></span>
+            <span class="new badge grey darken-4" data-badge-caption=""><a  href="/products?queryItem=<%= queryItem %>&sortBy=plh&pageNo=<%= pageNo %>"  >Price:Low-High</a></span>
+            <span class="new badge grey darken-4" data-badge-caption=""><a  href="/products?queryItem=<%= queryItem %>&sortBy=phl&pageNo=<%= pageNo %>"  >Price:High-low</a></span>
           </div>
         </div>
-      </form>
+        
+        
+      </div>
+
     </div>
-    <hr>
-    <div class="container">
-        <div class="row">
-            <div class="col s6 " >
+    
+    
+  </div>
+
+  <!-- Display items part -->
+  <div class="container main">
+    <div class="row">
+        <div class="col s6 " >
+            <div class="row">
+              <!-- Brand -->
+              <div class="col s12 brand-icons" >	
+                <img src="images/amazon-svg.svg" alt="">
+              </div>
+              <!-- Items -->
+              <div class="col s12 item-bucket">	
                 <div class="row">
-                <% amazon.forEach((item) => {%>                    
-                    <div class="col s12 m6">
-                        <div class="card">
-                          <div class="card-image">
-                            <img src="<%=item.image %> ">                            
+                  <% if(amazon.length == 0) {%>
+                    
+                    <img src="images/noproduct.png" class="responsive-img" alt="sorry, no items found">
+                  <%} else {%>
+                    <% amazon.forEach((item) => {%>                    
+                      <div class="col s12 l6">
+                          <div class="card">
+                            <div class="card-image">
+                              <img src="<%=item.image %> ">                            
+                            </div>
+                            <div class="card-content">
+                            <a href="<%=item.link %>"> <h5 class="card-title-custom">
+                                <%=item.title %></h5>
+                                
+                                <blockquote><b><%=item.price%></b></blockquote>
+                            </a>
+                            </div>
+                            <div class="card-action">
+                              
+                              <p class="red-text"> <b><%=item.coupon %></b> </p>
+                              
+                              <p><%=item.rating %></p>
+                              <p class="red-text"><%=item.description %></p>
+               
+                            </div>
                           </div>
-                          <div class="card-content">
-                          <a href="<%=item.link %>"> <h5 class="card-title-custom">
-                              <%=item.title %></h5>
-                          </a>
-                          </div>
-                          <div class="card-action">
-                            <p><%=item.price %></p>
-                            <p> <%=item.coupon %> </p>
-                            <p><%=item.shipping %></p>
-                            <p><%=item.rating %></p>
-                            <p><%=item.reviews %></p>
-                          </div>
-                        </div>
-                      </div>  
-                <%})%>
-                </div>
-            </div>
-            
-            <!-- Ebay  -->
-            <div class="col s6 " >
-                <div class="row">
-                <% ebay.forEach((item) => {%>                    
-                    <div class="col s12 m6">
-                        <div class="card">
-                          <div class="card-image">
-                            <img src="<%=item.image %> ">                            
-                          </div>
-                          <div class="card-content">
-                          <a href="<%=item.link %>"> <h5 class="card-title-custom">
-                              <%=item.title %></h5>
-                          </a>
-                          </div>
-                          <div class="card-action">
-                            <p><%=item.price %></p>
-                            <p> <%=ebay[0].discount %> </p>
-                            <p><%=ebay[0].shippingFrom %></p>
-                            <p><%=ebay[0].shippingCost %></p>
-                            <p><%=ebay[0].description %> </p>
-                            <p><%=ebay[0].hotness %></p>
-                          </div>
-                        </div>
-                      </div>  
-                <%})%>
-                </div>
+                        </div>  
+                    <%})%>
+                    
+                  <%}%>
+                  </div>
+              </div>
+              
             </div>
         </div>
-    </div>   
+        
+        <!-- Ebay  -->
+        <div class="col s6 " >
+            <div class="row">
+              <!-- Brand -->
+              <div class="col s12 brand-icons" >	
+                <img src="images/ebay-svg.svg" alt="">
+              </div>
+              <!-- Items -->
+              <div class="col s12 item-bucket">	
+                <div class="row">
+                  <% if(ebay.length == 0) {%>
+                    <img src="images/noproduct.png" class="responsive-img" alt="sorry, no items found">
+                  <%} else {%>
+                    <% ebay.forEach((item) => {%>                    
+                      <div class="col s12 l6">
+                          <div class="card">
+                            <div class="card-image">
+                              <img src="<%=item.image %> ">                            
+                            </div>
+                            <div class="card-content">
+                            <a href="<%=item.link %>"> <h5 class="card-title-custom">
+                                <%=item.title %></h5>
+                                <blockquote><b><%= item.price %></b></blockquote>
+                                <p class="right-align"><%=item.shippingCost %></p>
+                            </a>
+                            </div>
+                            <div class="card-action">
+                              <p class="red-text"> <b><%=item.discount %></b> </p>
+
+                              <p><%=item.shippingFrom %></p>
+                              <p><%=item.description %></p>
+                              <p><%=item.hotness %></p>
+                            </div>
+                          </div>
+                        </div>  
+                    <%})%>
+                    
+                  <%}%>
+                  </div>
+              </div>
+              
+            </div>
+        </div>
+    </div>
+</div>  
+<!-- Pages -->
+<div class="row center-align pages">
+  <a class="waves-effect waves-light btn" href="/products?queryItem=<%= queryItem %>&sortBy=&pageNo=<%= parseInt(pageNo)-1 %>" <%= parseInt(pageNo)<=1 ? "disabled" : "" %> ><i class="material-icons left">chevron_left</i>Prev</a>
+  <a class="waves-effect waves-light btn" href="/products?queryItem=<%= queryItem %>&sortBy=&pageNo=<%= parseInt(pageNo)+1 %>" <%= amazon.length>0 ? "" : ebay.length>0 ? "" :"disabled" %>  >Next<i class="material-icons right">chevron_right</i></a>
+
+</div>
+<!-- Footer -->
+<footer class="page-footer blue-grey darken-3">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">PRICIO</h5>
+        <p class="grey-text text-lighten-4">PRICIO is a best way to compare the prices in leading two e-commerce sites</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">COTACT</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2020 Copyright Text
+    </div>
+  </div>
+</footer>
+    
     
 </body>
 </html>

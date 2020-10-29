@@ -102,7 +102,11 @@ const getFromEbay =async (queryItem="",pageNo=1,sortBy="") => {
  * API requests
  */
 // Get request
-app.get('/',async  (req, res) => {
+
+app.get('/',(req,res)=>{
+  res.render("index")
+})
+app.get('/products',async  (req, res) => {
   let queryItem
   let pageNo
   let sortBy
@@ -119,7 +123,7 @@ app.get('/',async  (req, res) => {
 
     // rendering
     // res.render("index")
-    res.render("index",{
+    res.render("products",{
       "queryItem":queryItem,
       "pageNo":pageNo,
       "sortBy":sortBy,
@@ -148,15 +152,8 @@ app.post('/', async (req, res) => {
     const amazon =await getFromAmazon(queryItem)  
     const ebay =await getFromEbay(queryItem)  
 
-    //rendering
-    // res.render("index",{
-    //   "item":`${req.body.search}`,
-    //   "page":`${req.body.page}`,
-    //   "sort_by":`${req.body.sort}`,
-    //   "amazon":amazon,
-    //   "ebay":ebay
-    // })  
-    res.render("index",{
+
+    res.render("products",{
       "queryItem":queryItem,
       "pageNo":1,
       "sortBy":"",
