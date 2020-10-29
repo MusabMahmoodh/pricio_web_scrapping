@@ -94,19 +94,20 @@ const getFromEbay =async (item="") => {
 app.get('/',async  (req, res) => {
 
   
-  console.log("started")
-  try {
-    const amazon =await getFromAmazon()  
-    const ebay =await getFromEbay()  
+  // console.log("started")
+  // try {
+  //   const amazon =await getFromAmazon()  
+  //   const ebay =await getFromEbay()  
 
     //rendering
-    res.render("index",{
-      "amazon":amazon,
-      "ebay":ebay
-    })  
-  } catch (err) {
-    console.log(err)
-  }
+    res.render("index")
+    // res.render("index",{
+    //   "amazon":amazon,
+    //   "ebay":ebay
+    // })  
+  // } catch (err) {
+  //   console.log(err)
+  // }
   
     
   

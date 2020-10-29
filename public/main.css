@@ -4,7 +4,9 @@
     box-sizing: border-box;
     
 }
-
+/* 
+Card
+ */
 .card-title-custom {
     font-size: .8rem;
     font-weight: bold;
@@ -14,9 +16,52 @@
 a {
     color: black;
 }
-
+/* 
+Header desigining
+*/
+header {
+    color: #e0f2f1;
+    
+}
+header .row {
+    margin-bottom: 0;
+    padding: 10px 0;
+}
+header h1{
+    margin-bottom: 0;
+    margin-top: 0;
+}
+header p{
+    margin-bottom: 0;
+    margin-top: 0;
+    color: #b2dfdb;
+}
+header input{
+    color: #e0f2f1;
+}
+header input:focus {
+    color:#b2dfdb;
+}
+header {
+    margin-bottom: 20px;
+}
+/* 
+Icons
+*/
+.brand-icons {
+    width: 70%;
+    text-align: center;
+}
+.brand-icons img{
+    height: 40px;
+    
+}
+.valign-wrapper {flex-wrap: wrap;}
 @media (max-width: 576px) { 
     .container {
         width: 100%;
+    }
+    header {
+        text-align: center;
     }
 }
