@@ -102,6 +102,7 @@ app.get('/',async  (req, res) => {
     // rendering
     // res.render("index")
     res.render("index",{
+      "queryItem":"",
       "amazon":amazon,
       "ebay":ebay
     })  
@@ -116,21 +117,33 @@ app.get('/',async  (req, res) => {
 })
 // Post request
 app.post('/', async (req, res) => {
-  let queryItem = req.body.search
-  console.log(req.body.search)
+  var queryItem
+  if(req.body.search) {
+    queryItem = req.body.search
+  } else {
+    queryItem = ""
+  }
   try {
     const amazon =await getFromAmazon(queryItem)  
     const ebay =await getFromEbay(queryItem)  
 
     //rendering
+    // res.render("index",{
+    //   "item":`${req.body.search}`,
+    //   "page":`${req.body.page}`,
+    //   "sort_by":`${req.body.sort}`,
+    //   "amazon":amazon,
+    //   "ebay":ebay
+    // })  
     res.render("index",{
+      "queryItem":queryItem,
       "amazon":amazon,
       "ebay":ebay
     })  
   } catch (err) {
     console.log(err)
   }
-  res.send('POST request to the homepage')
+  // res.send('POST request to the homepage')
 })
 
 
