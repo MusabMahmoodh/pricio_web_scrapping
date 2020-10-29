@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
     
 }
 /* 
@@ -16,20 +17,27 @@ Card
 a {
     color: black;
 }
+h5 {
+    line-height: 2.5rem;
+}
 /* 
 Header desigining
 */
 header {
     color: #e0f2f1;
     
+    
 }
 header .row {
     margin-bottom: 0;
     padding: 10px 0;
+    
 }
 header h1{
     margin-bottom: 0;
     margin-top: 0;
+    overflow-y:hidden;
+    
 }
 header p{
     margin-bottom: 0;
@@ -53,8 +61,16 @@ Icons
     text-align: center;
 }
 .brand-icons img{
-    height: 40px;
+    height: 50px;
     
+}
+
+/* 
+Products/items
+*/
+.item-bucket {
+    max-height: 100vh;
+    overflow-y: scroll;
 }
 .valign-wrapper {flex-wrap: wrap;}
 @media (max-width: 576px) { 
@@ -62,6 +78,10 @@ Icons
         width: 100%;
     }
     header {
+        text-align: center;
+    }
+
+    footer {
         text-align: center;
     }
 }

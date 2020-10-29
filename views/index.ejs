@@ -54,8 +54,30 @@
                 <img src="images/amazon-svg.svg" alt="">
               </div>
               <!-- Items -->
-              <div class="col s12">	
-
+              <div class="col s12 item-bucket">	
+                <div class="row">
+                  <% amazon.forEach((item) => {%>                    
+                      <div class="col s12 m6">
+                          <div class="card">
+                            <div class="card-image">
+                              <img src="<%=item.image %> ">                            
+                            </div>
+                            <div class="card-content">
+                            <a href="<%=item.link %>"> <h5 class="card-title-custom">
+                                <%=item.title %></h5>
+                            </a>
+                            </div>
+                            <div class="card-action">
+                              <p><%=item.price %></p>
+                              <p> <%=item.coupon %> </p>
+                              <p><%=item.shipping %></p>
+                              <p><%=item.rating %></p>
+                              <p><%=item.reviews %></p>
+                            </div>
+                          </div>
+                        </div>  
+                  <%})%>
+                  </div>
               </div>
               
             </div>
@@ -69,14 +91,61 @@
                 <img src="images/ebay-svg.svg" alt="">
               </div>
               <!-- Items -->
-              <div class="col s12">	
-
+              <div class="col s12 item-bucket">	
+                <div class="row">
+                  <% ebay.forEach((item) => {%>                    
+                      <div class="col s12 m6">
+                          <div class="card">
+                            <div class="card-image">
+                              <img src="<%=item.image %> ">                            
+                            </div>
+                            <div class="card-content">
+                            <a href="<%=item.link %>"> <h5 class="card-title-custom">
+                                <%=item.title %></h5>
+                            </a>
+                            </div>
+                            <div class="card-action">
+                              <p><%=item.price %></p>
+                              <p> <%=ebay[0].discount %> </p>
+                              <p><%=ebay[0].shippingFrom %></p>
+                              <p><%=ebay[0].shippingCost %></p>
+                              <p><%=ebay[0].description %> </p>
+                              <p><%=ebay[0].hotness %></p>
+                            </div>
+                          </div>
+                        </div>  
+                  <%})%>
+                  </div>
               </div>
               
             </div>
         </div>
     </div>
 </div>  
+<footer class="page-footer blue-grey darken-3">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">PRICIO</h5>
+        <p class="grey-text text-lighten-4">PRICIO is a best way to compare the prices in leading two e-commerce sites</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">COTACT</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2020 Copyright Text
+    </div>
+  </div>
+</footer>
     
     
 </body>
