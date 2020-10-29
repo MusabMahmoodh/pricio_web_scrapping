@@ -14,3 +14,9 @@
 a {
     color: black;
 }
+
+@media (max-width: 576px) { 
+    .container {
+        width: 100%;
+    }
+}

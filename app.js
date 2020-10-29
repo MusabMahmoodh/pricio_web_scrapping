@@ -3,9 +3,12 @@ const axios = require("axios")
 
 const cheerio = require('cheerio')
 const path = require('path');
- 
+var bodyParser = require('body-parser');
 
-const app = express()
+
+var app=express();
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 const port = 3000
 
 
@@ -19,10 +22,10 @@ app.use(express.static(path.join(__dirname, 'public')))
  */
 
 // Amazon
-const getFromAmazon =async (item) => {
+const getFromAmazon =async (item="") => {
   try{
     let items = []
-    const result= await axios.get("https://www.amazon.com/s?k=headset")
+    const result= await axios.get(`https://www.amazon.com/s?k=${item}`)
 
     // const $ = cheerio.load(result.data,{
     //   withDomLvl1: true,
@@ -54,10 +57,10 @@ const getFromAmazon =async (item) => {
 }
 
 //function to get from E-bay\
-const getFromEbay =async () => {
+const getFromEbay =async (item="") => {
   try{
     let items = []
-    const result= await axios.get("https://www.ebay.com/sch/i.html?_nkw=laptop")
+    const result= await axios.get(`https://www.ebay.com/sch/i.html?_nkw=${item}`)
 
     const $ = cheerio.load(result.data);
     console.log("Here")
@@ -110,7 +113,27 @@ app.get('/',async  (req, res) => {
   console.log("done")
   
 })
+// Post request
+app.post('/', async (req, res) => {
+  let queryItem = req.body.search
+  console.log(req.body.search)
+  try {
+    const amazon =await getFromAmazon(queryItem)  
+    const ebay =await getFromEbay(queryItem)  
 
+    //rendering
+    res.render("index",{
+      "amazon":amazon,
+      "ebay":ebay
+    })  
+  } catch (err) {
+    console.log(err)
+  }
+  res.send('POST request to the homepage')
+})
+
+
+// ///////////////////
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
