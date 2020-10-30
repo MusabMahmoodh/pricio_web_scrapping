@@ -4,14 +4,24 @@ const axios = require("axios")
 const cheerio = require('cheerio')
 const path = require('path');
 var bodyParser = require('body-parser');
+const { check } = require('express-validator');
+const helmet = require("helmet");
+ 
+const app = express();
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 
 
-var app=express();
 
 
 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+
+app.use(express.json())
 
 
 
@@ -147,7 +157,10 @@ app.get('/products',async  (req, res) => {
 })
 
 // Post request
-app.post('/', async (req, res) => {
+app.post('/', [
+  check('search').isLength({ min: 1 }).trim().escape(),
+  
+],  async (req, res) => {
   var queryItem
   if(req.body.search) {
     queryItem = req.body.search
