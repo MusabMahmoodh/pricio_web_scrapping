@@ -91,7 +91,7 @@ Icons
 Products/items
 */
 .item-bucket {
-    max-height: 80vh;
+    max-height: 80%;
     overflow-y: scroll;
     margin-bottom: 20px;
 }
@@ -99,7 +99,7 @@ Products/items
     margin-bottom: 40px;
 }
 .main {
-    min-height: 50vh;
+    min-height: 50%;
 }
 .valign-wrapper {flex-wrap: wrap;}
 @media (max-width: 576px) { 
