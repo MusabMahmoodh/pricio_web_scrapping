@@ -5,6 +5,10 @@
     overflow-x: hidden;
     
 }
+
+html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+  }
 body {
     background: #fafafa;
 }
