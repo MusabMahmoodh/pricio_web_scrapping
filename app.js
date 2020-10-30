@@ -57,7 +57,7 @@ const getFromAmazon =async (queryItem="",pageNo=1,sortBy="") => {
     })
     return items
   } catch(err) {
-      console.log(err)
+    return []
   }
 }
 
@@ -96,7 +96,7 @@ const getFromEbay =async (queryItem="",pageNo=1,sortBy="") => {
     
     return items
   } catch(err) {
-      console.log(err)
+    return []
   }
 }
 
@@ -108,6 +108,9 @@ const getFromEbay =async (queryItem="",pageNo=1,sortBy="") => {
 
 app.get('/',(req,res)=>{
   res.render("index")
+})
+app.get('/error',(req,res)=>{
+  res.render("error")
 })
 app.get('/products',async  (req, res) => {
   let queryItem
@@ -134,7 +137,7 @@ app.get('/products',async  (req, res) => {
       "ebay":ebay
     })  
   } catch (err) {
-    console.log(err)
+    res.redirect("/error")
   }
   
     
@@ -164,9 +167,8 @@ app.post('/', async (req, res) => {
       "ebay":ebay
     })  
   } catch (err) {
-    console.log(err)
+    res.redirect("/error")
   }
-  // res.send('POST request to the homepage')
 })
 
 
